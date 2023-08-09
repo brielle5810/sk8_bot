@@ -7,9 +7,11 @@ Sk8bot is a discord bot I made for a server with my friends. It can assign and r
 Via the RapidAPI API Hub:
 - MyAnimeList: https://rapidapi.com/felixeschmittfes/api/myanimelist/
 - AniList GraphQL: https://rapidapi.com/rapidapi/api/anilist-graphql/
+
 Via the APINinjas API Hub:
 - Jokes: https://api-ninjas.com/api/jokes
 - Fun Facts: https://api-ninjas.com/api/facts
+
 Other:
 - Inspirational Quotes: https://zenquotes.io/
 
