@@ -1,7 +1,7 @@
 # sk8bot!
 
 ## Description:
-Sk8bot is a discord bot I made for a server with my friends. It can assign and remove roles and has many fun interactions with users. It can tell jokes, share fun facts, give inspiration, give reccomendations on anime based on genre or from users of anime recommendation sites. 
+Sk8bot is a discord bot I made for a server with my friends. It can assign and remove roles and has many fun interactions with users. It can tell jokes, share fun facts, give inspiration, give recommendations on anime based on genre or from users of anime recommendation sites. 
 
 ## APIS used:
 Via the RapidAPI API Hub:
