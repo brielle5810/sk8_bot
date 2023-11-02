@@ -7,6 +7,16 @@ import bot
 
 
 def run_discord_bot():
+    VERIFIED_ROLE_MAP = {
+        '🔫': 'Valorant Gang',
+        '🃏': 'Pokemon TCG Masters',
+        '🐉': 'DnDers',
+        '🎮': 'EPIC Fortnite Gamers',
+        '⛏️': 'mind crafters',
+        '🧘‍♂️': 'master meditators',
+        '💪': 'SHREDDED',
+        '❤️': 'verified'
+    }
     TOKEN = 'TOKEN'
     client = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 
@@ -27,51 +37,26 @@ def run_discord_bot():
 
     @client.event
     async def on_raw_reaction_add(reaction):
-        if reaction.channel_id == verified_id:
-            if reaction.message_id== MESSAGEID: #id here
-                if str(reaction.emoji) == "🔫":
-                    verified_role = get(reaction.member.guild.roles, name="Valorant Gang")
-                elif str(reaction.emoji) == "🃏":
-                    verified_role = get(reaction.member.guild.roles, name="Pokemon TCG Masters")
-                elif str(reaction.emoji) == "🐉": #done
-                    verified_role = get(reaction.member.guild.roles, name="DnDers")
-                elif str(reaction.emoji) == "🎮":
-                    verified_role = get(reaction.member.guild.roles, name="EPIC Fortnite Gamers")
-                elif str(reaction.emoji) == "⛏️":
-                    verified_role = get(reaction.member.guild.roles, name="mind crafters")
-                elif str(reaction.emoji) == "🧘‍♂️":
-                    verified_role = get(reaction.member.guild.roles, name="master meditators")
-                elif str(reaction.emoji) == "💪":
-                    verified_role = get(reaction.member.guild.roles, name="SHREDDED")
-                elif str(reaction.emoji) == "❤️":
-                    verified_role = get(reaction.member.guild.roles, name="verified")
-                await reaction.member.add_roles(verified_role)
+        if reaction.channel_id == verified_id and reaction.message_id== MESSAGEID: #id here
+            react = str(reaction.emoji)
+            if react in VERIFIED_ROLE_MAP:
+                verified_role = get(reaction.member.guild.roles, name=VERIFIED_ROLE_MAP[react])
+                if verified_role:
+                    await reaction.member.add_roles(verified_role)
             #🔫 🐉 🎮 ⛏️ 🃏 🧘‍♂️ 💪
 
     @client.event
     async def on_raw_reaction_remove(reaction):
         if reaction.message_id == 1138899007960260679:
+            react = str(reaction.emoji)
             guild_id = reaction.guild_id
             guild = discord.utils.find(lambda g: g.id == guild_id, client.guilds)
-            if str(reaction.emoji) == "❤️":
-                unverified_role= discord.utils.get(guild.roles,name="verified")
-            elif str(reaction.emoji) == "🐉":
-                unverified_role = discord.utils.get(guild.roles, name="DnDers")
-            elif str(reaction.emoji) == "💪":
-                unverified_role = discord.utils.get(guild.roles, name="SHREDDED")
-            elif str(reaction.emoji) == "⛏️":
-                unverified_role = discord.utils.get(guild.roles, name="mind crafters")
-            elif str(reaction.emoji) == "🔫":
-                unverified_role = discord.utils.get(guild.roles, name="EPIC Fortnite Gamers")
-            elif str(reaction.emoji) == "🧘‍♂️":
-                unverified_role = discord.utils.get(guild.roles, name="master meditators")
-            elif str(reaction.emoji) == "🃏️":
-                unverified_role = discord.utils.get(guild.roles, name="Pokemon TCG Masters")
-            elif str(reaction.emoji) == "🔫":
-                unverified_role = discord.utils.get(guild.roles, name="Valorant Gang")
-            if unverified_role != None:
+            if react in VERIFIED_ROLE_MAP:
+                unverified_role= discord.utils.get(guild.roles,name=VERIFIED_ROLE_MAP[react])
+
+            if unverified_role:
                 member= discord.utils.find(lambda m: m.id ==reaction.user_id, guild.members)
-                if member != None:
+                if member:
                     await member.remove_roles(unverified_role)
                 else:
                     print("who?")
