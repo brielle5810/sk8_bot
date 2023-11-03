@@ -45,6 +45,8 @@ class MyAnimeCommands(commands.Cog):
     async def animerec(self,ctx, user_genre):
         if user_genre=="Mahou":
             user_genre="Mahou Shoujo"
+        if user_genre == "Slice":
+            user_genre = "Slice of Life"
         print(user_genre)
         genre_list=["Action", "Adventure", "Comedy", "Drama", "Ecchi", "Fantasy",
                     "Horror", "Mahou Shoujo", "Mecha", "Music", "Mystery", "Psychological",
